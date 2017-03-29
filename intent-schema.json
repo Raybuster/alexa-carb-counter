@@ -1,0 +1,35 @@
+{
+  "intents": [
+    {
+      "intent": "AddGramsOfProtein",
+      "slots": [
+        {
+          "name": "GramsOfProtein",
+          "type": "AMAZON.NUMBER"
+        },
+        {
+          "name": "Date",
+          "type": "AMAZON.DATE"
+        }
+      ]
+    },
+    {
+      "intent": "HowMuchProtein",
+      "slots": [
+        {
+          "name": "Date",
+          "type": "AMAZON.DATE"
+        }
+      ]
+    },
+    {
+      "intent": "AMAZON.HelpIntent"
+    },
+    {
+      "intent": "AMAZON.StopIntent"
+    },
+    {
+      "intent": "AMAZON.CancelIntent"
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "carb-counter",
+  "version": "1.0.0",
+  "description": "Track how many carbs you eat",
+  "main": "index.js",
+  "dependencies": {
+    "alexa-sdk": "^1.0.7"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \\\"Error: no test specified\\\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/raybuster/alexa-carb-counter.git"
+  },
+  "keywords": [
+    "amazon",
+    "echo",
+    "alexa",
+    "skills"
+  ],
+  "author": "Josh Swaney",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/raybuster/alexa-carb-counter/issues"
+  },
+  "homepage": "https://github.com/raybuster/alexa-carb-counter#readme"
+}
