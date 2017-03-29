@@ -2,9 +2,9 @@
 
 const AWS = require('aws-sdk');
 const DDB = new AWS.DynamoDB({apiVersion: '2012-08-10', region: 'us-east-1'});
-const TABLE_NAME = 'ProteinTracker';
+const TABLE_NAME = 'CarbCounter';
 
-exports.putGramsOfProtein = function(userId, date, gramsOfProtein, cb) {
+exports.putGramsOfCarbs = function(userId, date, gramsOfCarbs, cb) {
     var params = {
         TableName: TABLE_NAME,
         Item: {
@@ -14,15 +14,15 @@ exports.putGramsOfProtein = function(userId, date, gramsOfProtein, cb) {
             'date': {
                 S: date
             },
-            'gramsOfProtein': {
-                N: gramsOfProtein
+            'gramsOfCarbs': {
+                N: gramsOfCarbs
             }
         }
     };
     DDB.putItem(params, cb);
 }
 
-exports.readGramsOfProtein = function(userId, date, cb) {
+exports.readGramsOfCarbs = function(userId, date, cb) {
     var params = {
         TableName: TABLE_NAME,
         Key: {
@@ -33,12 +33,12 @@ exports.readGramsOfProtein = function(userId, date, cb) {
                 S: date
             }
         },
-        ProjectionExpression: 'gramsOfProtein'
+        ProjectionExpression: 'gramsOfCarbs'
     };
     DDB.getItem(params, cb);
 }
 
-exports.updateGramsOfProtein = function(userId, date, gramsOfProtein, cb) {
+exports.updateGramsOfCarbs = function(userId, date, gramsOfCarbs, cb) {
     var params = {
         TableName: TABLE_NAME,
         Key: {
@@ -49,16 +49,16 @@ exports.updateGramsOfProtein = function(userId, date, gramsOfProtein, cb) {
                 S: date
             }
         },
-        UpdateExpression: 'ADD gramsOfProtein :gramsOfProtein',
+        UpdateExpression: 'ADD gramsOfCarbs :gramsOfCarbs',
         ExpressionAttributeValues: {
-            ':gramsOfProtein': {'N': gramsOfProtein}
+            ':gramsOfCarbs': {'N': gramsOfCarbs}
         },
         ReturnValues: 'ALL_NEW'
     };
     DDB.updateItem(params, cb);
 }
 
-exports.deleteGramsOfProtein = function(userId, date, cb) {
+exports.deleteGramsOfCarbs = function(userId, date, cb) {
     var params = {
         TableName: TABLE_NAME,
         Key: {
@@ -69,7 +69,7 @@ exports.deleteGramsOfProtein = function(userId, date, cb) {
                 S: date
             }
         },
-        ConditionExpression: 'attribute_exists(gramsOfProtein)',
+        ConditionExpression: 'attribute_exists(gramsOfCarbs)',
         ReturnValues: 'ALL_OLD'
     };
     DDB.deleteItem(params, cb);

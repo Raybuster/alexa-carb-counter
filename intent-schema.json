@@ -1,10 +1,10 @@
 {
   "intents": [
     {
-      "intent": "AddGramsOfProtein",
+      "intent": "AddGramsOfCarbs",
       "slots": [
         {
-          "name": "GramsOfProtein",
+          "name": "GramsOfCarbs",
           "type": "AMAZON.NUMBER"
         },
         {
@@ -14,7 +14,7 @@
       ]
     },
     {
-      "intent": "HowMuchProtein",
+      "intent": "HowManyCarbs",
       "slots": [
         {
           "name": "Date",

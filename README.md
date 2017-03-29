@@ -1,2 +1,2 @@
-# alexa-protein-tracker
-Track how much protein you eat
+# alexa-carb-counter
+Track how many carbs you eat

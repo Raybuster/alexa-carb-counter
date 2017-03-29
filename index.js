@@ -30,8 +30,8 @@ const handlers = {
             this.emit(':ask', speechOutput, reprompt);
         } else {
             (function write(index) {CarbCounter.updateGramsOfCarbs(userId, date, gramsOfCarbs, function(err, result) {
-                const cardTitle = index.t("ADD_PROTEIN_CARD_TITLE", index.t("SKILL_NAME"), gramsOfCarbs);
-                const speechOutput = index.t('ADD_PROTEIN_MESSAGE', gramsOfCarbs);
+                const cardTitle = index.t("ADD_CARBS_CARD_TITLE", index.t("SKILL_NAME"), gramsOfCarbs);
+                const speechOutput = index.t('ADD_CARBS_MESSAGE', gramsOfCarbs);
 
                 index.emit(':tellWithCard', speechOutput, cardTitle);
             })})(this);
@@ -48,8 +48,8 @@ const handlers = {
                 gramsOfCarbs = result.Item.gramsOfCarbs.N;
             }
 
-            const cardTitle = index.t("HOW_MUCH_PROTEIN_TODAY_CARD_TITLE", index.t("SKILL_NAME"), gramsOfCarbs);
-            const speechOutput = index.t('HOW_MUCH_PROTEIN_TODAY_MESSAGE', gramsOfCarbs);
+            const cardTitle = index.t("HOW_MANY_CARBS_TODAY_CARD_TITLE", index.t("SKILL_NAME"), gramsOfCarbs);
+            const speechOutput = index.t('HOW_MANY_CARBS_TODAY_MESSAGE', gramsOfCarbs);
 
             index.emit(':tellWithCard', speechOutput, cardTitle);
         })})(this);
@@ -78,10 +78,10 @@ const LANGUAGE_STRINGS = {
             HELP_MESSAGE: 'You can say add twenty grams of carbs, or, you can say exit... What can I help you with?',
             HELP_REPROMPT: 'What can I help you with?',
             STOP_MESSAGE: 'Goodbye!',
-            ADD_PROTEIN_MESSAGE: "I\'ve added %s grams of carbs to your log",
-            ADD_PROTEIN_CARD_TITLE: "%s - %s grams added",
-            HOW_MUCH_PROTEIN_TODAY_MESSAGE: "You've eaten %s grams of carbs today",
-            HOW_MUCH_PROTEIN_TODAY_CARD_TITLE: "%s - %s grams eaten today"
+            ADD_CARBS_MESSAGE: "I\'ve added %s grams of carbs to your log",
+            ADD_CARBS_CARD_TITLE: "%s - %s grams added",
+            HOW_MANY_CARBS_TODAY_MESSAGE: "You've eaten %s grams of carbs today",
+            HOW_MANY_CARBS_TODAY_CARD_TITLE: "%s - %s grams eaten today"
         },
     },
 };
