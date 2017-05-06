@@ -37,6 +37,24 @@ const handlers = {
             })})(this);
         }
     },
+    'SetGramsOfCarbs': function () {
+        const userId = this.event.session.user.userId;
+        const gramsOfCarbs = this.event.request.intent.slots.GramsOfCarbs.value;
+        const date = this.event.request.intent.slots.Date.value || this.event.request.timestamp.slice(0, 10);
+
+        if (isNaN(gramsOfCarbs)) {
+            const speechOutput = this.t('HELP_MESSAGE');
+            const reprompt = this.t('HELP_REPROMPT');
+            this.emit(':ask', speechOutput, reprompt);
+        } else {
+            (function write(index) {CarbCounter.putGramsOfCarbs(userId, date, gramsOfCarbs, function(err, result) {
+                const cardTitle = index.t("SET_CARBS_CARD_TITLE", index.t("SKILL_NAME"), gramsOfCarbs);
+                const speechOutput = index.t('SET_CARBS_MESSAGE', gramsOfCarbs);
+
+                index.emit(':tellWithCard', speechOutput, cardTitle);
+            })})(this);
+        }
+    },
     'HowManyCarbs': function () {
         const userId = this.event.session.user.userId;
         const date = this.event.request.intent.slots.Date.value || this.event.request.timestamp.slice(0, 10);
@@ -75,11 +93,13 @@ const LANGUAGE_STRINGS = {
         translation: {
             SKILL_NAME: 'Carb Counter',
             WELCOME_MESSAGE: 'Welcome to %s, %s',
-            HELP_MESSAGE: 'You can say add twenty grams of carbs, or, you can say exit... What can I help you with?',
+            HELP_MESSAGE: 'You can say add twenty grams of carbs, set my carb count to zero, or, you can say exit... What can I help you with?',
             HELP_REPROMPT: 'What can I help you with?',
             STOP_MESSAGE: 'Goodbye!',
             ADD_CARBS_MESSAGE: "I\'ve added %s grams of carbs to your log",
             ADD_CARBS_CARD_TITLE: "%s - %s grams added",
+            SET_CARBS_MESSAGE: "I\'ve reset your carb count to %s grams",
+            SET_CARBS_CARD_TITLE: "%s - count reset to %s grams",
             HOW_MANY_CARBS_TODAY_MESSAGE: "You've eaten %s grams of carbs today",
             HOW_MANY_CARBS_TODAY_CARD_TITLE: "%s - %s grams eaten today"
         },
